@@ -6,9 +6,11 @@ from telegram.ext import (
     ContextTypes, filters,
 )
 
+#load the token
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 
+#first message to the user and keyboard with buttons
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     keyboard = [
             ["Мой вишлист", "Создать подарок", "Удалить подарок"],
@@ -17,6 +19,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text("Привет! Чем займемся сегодня?", reply_markup=markup)
 
+#handle the text messages from the user and respond accordingly
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text
     if text == "Мой вишлист":
@@ -30,7 +33,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     elif text == "Вишлист друзей":
         await update.message.reply_text("Это вишлист ваших друзей.")
 
-
+#main function to run the bot
 def main():
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
