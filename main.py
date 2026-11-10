@@ -1,10 +1,13 @@
 import os
 from dotenv import load_dotenv
+import psycopg2
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import (
     Application, CommandHandler, MessageHandler,
     ContextTypes, filters,
 )
+from contextlib import closing
+from db import get_connection
 
 from handlers.ShowMyList_handler import show_my_list
 
@@ -12,12 +15,23 @@ from handlers.ShowMyList_handler import show_my_list
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 
-#first message to the user and keyboard with buttons
+def register_user(update: Update) -> None:
+    user = update.effective_user
+    with closing(get_connection()) as conn:
+        with conn, conn.cursor() as cur:
+            cur.execute(
+                "INSERT INTO users (user_id, username) VALUES (%s, %s) "
+                "ON CONFLICT (user_id) DO UPDATE SET username = EXCLUDED.username;",
+                (user.id, user.username),
+            )
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    register_user(update)
+
     keyboard = [
-            ["Мой вишлист", "Создать подарок", "Удалить подарок"],
-            ["Закрыть вишлист", "Вишлист друзей"],
-        ]
+        ["Мой вишлист", "Создать подарок", "Удалить подарок"],
+        ["Закрыть вишлист", "Вишлист друзей"],
+    ]
     markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text("Привет! Чем займемся сегодня?", reply_markup=markup)
 
@@ -25,7 +39,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text
     if text == "Мой вишлист":
-        show_my_list()
+        show_my_list(update, context)
     elif text == "Создать подарок":
         await update.message.reply_text("Создание подарка.")
     elif text == "Удалить подарок":

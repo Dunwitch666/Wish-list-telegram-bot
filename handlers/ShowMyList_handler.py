@@ -14,19 +14,4 @@ PASSWORD = os.getenv("DATABASE_PASSWORD")
 
 #show the user wishlist from the database
 async def show_my_list(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    try:
-        #connect with database
-        connection = psycopg2.connect(
-            dbname='telegram_db',
-            user='postgres',
-            password=PASSWORD,
-            host='127.0.0.1',
-            port='5432',
-        )
-
-        cursor = connection.cursor()
-
-        await update.message.reply_text('Подключенно к БД')
-    except Exception as error:
-        await update.message.reply_text(f'Ошибка при подключении к базе данных: {error}')
-        return
+    pass    
