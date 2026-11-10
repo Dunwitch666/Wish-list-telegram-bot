@@ -25,6 +25,8 @@ async def show_my_list(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         )
 
         cursor = connection.cursor()
+
+        await update.message.reply_text('Подключенно к БД')
     except Exception as error:
         await update.message.reply_text(f'Ошибка при подключении к базе данных: {error}')
         return

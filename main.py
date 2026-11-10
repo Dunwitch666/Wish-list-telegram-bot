@@ -6,6 +6,8 @@ from telegram.ext import (
     ContextTypes, filters,
 )
 
+from handlers.ShowMyList_handler import show_my_list
+
 #load the token
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
@@ -23,7 +25,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text
     if text == "Мой вишлист":
-        await update.message.reply_text("Это ваш вишлист.")
+        show_my_list()
     elif text == "Создать подарок":
         await update.message.reply_text("Создание подарка.")
     elif text == "Удалить подарок":
