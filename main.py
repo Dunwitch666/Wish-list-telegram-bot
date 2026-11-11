@@ -28,6 +28,7 @@ def register_user(update: Update) -> None:
 
 #handle the /start command and send a welcome message with a keyboard
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    user = update.effective_user
     register_user(update)
 
     keyboard = [
@@ -35,7 +36,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         ["Закрыть вишлист", "Вишлист друзей"],
     ]
     markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
-    await update.message.reply_text("Привет! Чем займемся сегодня?", reply_markup=markup)
+    await update.message.reply_text(f"Привет {user.first_name}! Чем займемся сегодня?", reply_markup=markup)
 
 #handle the text messages from the user and respond accordingly
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
