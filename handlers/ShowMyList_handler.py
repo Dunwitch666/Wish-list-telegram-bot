@@ -1,19 +1,28 @@
-import os
-from dotenv import load_dotenv
-import psycopg2
-from telegram import Update
-from telegram.ext import (
-    Application, CommandHandler, MessageHandler,
-    ContextTypes, filters,
-)
 from contextlib import closing
+
+from telegram import Update
+from telegram.ext import ContextTypes
+
 from db import get_connection
-
-#load the database password from the .env file
-load_dotenv()
-PASSWORD = os.getenv("DATABASE_PASSWORD")
+from wishlist_view import send_wishlist
 
 
-#show the user wishlist from the database
+def fetch_gifts(user_id: int) -> list[tuple]:
+    with closing(get_connection()) as conn:
+        with conn, conn.cursor() as cur:
+            cur.execute(
+                "SELECT label, image_file_id FROM gifts "
+                "WHERE user_id = %s ORDER BY created_at, id;",
+                (user_id,),
+            )
+            return cur.fetchall()
+
+
 async def show_my_list(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    pass
+    gifts = fetch_gifts(update.effective_user.id)
+    await send_wishlist(
+        update,
+        gifts,
+        title="Твой вишлист",
+        empty_text="Твой вишлист пока пуст. Нажми «Создать подарок», чтобы добавить первое желание 🎀",
+    )

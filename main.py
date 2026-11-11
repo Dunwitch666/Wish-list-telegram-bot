@@ -42,7 +42,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text
     if text == "Мой вишлист":
-        show_my_list(update, context)
+        await show_my_list(update, context)
     elif text == "Создать подарок":
         await update.message.reply_text("Создание подарка.")
     elif text == "Удалить подарок":
