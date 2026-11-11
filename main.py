@@ -10,6 +10,7 @@ from contextlib import closing
 from db import get_connection
 
 from handlers.ShowMyList_handler import show_my_list
+from handlers.CreateNewGift_handler import create_gift
 
 #load the token
 load_dotenv()
@@ -44,7 +45,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     if text == "Мой вишлист":
         await show_my_list(update, context)
     elif text == "Создать подарок":
-        await update.message.reply_text("Создание подарка.")
+        await create_gift(update, context)
     elif text == "Удалить подарок":
         await update.message.reply_text("Удаление подарка.")
     elif text == "Закрыть вишлист":
