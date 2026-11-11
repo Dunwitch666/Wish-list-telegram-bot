@@ -15,6 +15,7 @@ from handlers.ShowMyList_handler import show_my_list
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 
+#register the user in the database if they are not already registered
 def register_user(update: Update) -> None:
     user = update.effective_user
     with closing(get_connection()) as conn:
@@ -25,6 +26,7 @@ def register_user(update: Update) -> None:
                 (user.id, user.username),
             )
 
+#handle the /start command and send a welcome message with a keyboard
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     register_user(update)
 
