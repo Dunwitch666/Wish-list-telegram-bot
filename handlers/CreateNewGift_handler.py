@@ -1,5 +1,4 @@
 from contextlib import closing
-
 from telegram import Update
 from telegram.ext import (
     Application,
@@ -10,8 +9,7 @@ from telegram.ext import (
     filters,
 )
 
-from db import get_connection
-from main import register_user
+from db import get_connection, register_user
 
 TEXT, PHOTO = range(2)
 
@@ -23,3 +21,10 @@ async def post_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 async def post_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text("Если хотите, отправте картинку")
     return PHOTO
+
+async def save_gift(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    with closing(get_connection()) as conn:
+            with conn, conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO gifts (user_id, label, image_file_id) VALUES (%s,%s,%s);"
+                )

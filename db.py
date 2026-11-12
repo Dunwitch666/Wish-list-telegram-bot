@@ -1,6 +1,7 @@
 import os
 import psycopg2
 
+#connection with database
 def get_connection():
     return psycopg2.connect(
         dbname='telegram_db',
