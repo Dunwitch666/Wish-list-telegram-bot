@@ -7,7 +7,7 @@ from telegram.ext import (
     ContextTypes, filters,
 )
 from contextlib import closing
-from db import get_connection
+from db import get_connection, register_user
 
 from handlers.ShowMyList_handler import show_my_list
 from handlers.CreateNewGift_handler import create_gift
@@ -15,17 +15,6 @@ from handlers.CreateNewGift_handler import create_gift
 #load the token
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
-
-#register the user in the database if they are not already registered
-def register_user(update: Update) -> None:
-    user = update.effective_user
-    with closing(get_connection()) as conn:
-        with conn, conn.cursor() as cur:
-            cur.execute(
-                "INSERT INTO users (user_id, username) VALUES (%s, %s) "
-                "ON CONFLICT (user_id) DO UPDATE SET username = EXCLUDED.username;",
-                (user.id, user.username),
-            )
 
 #handle the /start command and send a welcome message with a keyboard
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
