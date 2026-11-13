@@ -1,3 +1,4 @@
+#libraries import
 import os
 from dotenv import load_dotenv
 import psycopg2
@@ -7,8 +8,11 @@ from telegram.ext import (
     ContextTypes, filters,
 )
 from contextlib import closing
+
+#db import
 from db import get_connection, register_user
 
+#handlers import
 from handlers.ShowMyList_handler import show_my_list
 from handlers.CreateNewGift_handler import create_gift
 
