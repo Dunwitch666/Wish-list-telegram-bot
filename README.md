@@ -50,6 +50,8 @@ flowchart TD
     F --> End
 ```
 
+<p>The flowchart above shows the main user scenarios of the bot. It was created to illustrate how the bot handles user actions: viewing wishlists, creating gifts, closing wishlists, and deleting gifts.</p>
+
 <h3>Stack</h3>
 <ul>
   <li>python v3.13</li>
