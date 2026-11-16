@@ -38,8 +38,8 @@ async def send_wishlist(update: Update, gifts: list[tuple], title: str, empty_te
     )
 
     text_buffer: list[str] = []  
-    for number, (label, image_file_id) in enumerate(gifts, start=1):
-        text = format_gift(number, label)
+    for gift_id, label, image_file_id in gifts:
+        text = format_gift(gift_id, label)
 
         if not image_file_id:
             text_buffer.append(text)

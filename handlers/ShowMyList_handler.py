@@ -15,7 +15,7 @@ def fetch_gifts(user_id: int) -> list[tuple]:
     with closing(get_connection()) as conn:
         with conn, conn.cursor() as cur:
             cur.execute(
-                "SELECT label, image_file_id FROM gifts "
+                "SELECT id, label, image_file_id FROM gifts "
                 "WHERE user_id = %s ORDER BY created_at, id;",
                 (user_id,),
             )
