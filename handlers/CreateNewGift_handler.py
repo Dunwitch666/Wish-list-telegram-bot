@@ -14,6 +14,7 @@ from telegram.ext import (
 #db import
 from db import get_connection, register_user
 
+#define the stages of the conversation
 TEXT, PHOTO = range(2)
 
 #wirite a text stage
@@ -27,7 +28,7 @@ async def post_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 #add a photo stage
 async def post_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data["label"] = update.message.text   # запоминаем текст до сохранения
+    context.user_data["label"] = update.message.text
     keyboard = [
         [InlineKeyboardButton("Отмена", callback_data="cancel")],
     ]
@@ -51,7 +52,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 #save and request to data
 async def save_gift(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     label = context.user_data.pop("label")
-    file_id = update.message.photo[-1].file_id   # последний элемент = лучшее качество
+    file_id = update.message.photo[-1].file_id
 
     with closing(get_connection()) as conn:
             with conn, conn.cursor() as cur:
