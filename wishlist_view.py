@@ -9,7 +9,7 @@ MESSAGE_LIMIT = 4096   #Telegram limit for text message
 
 
 def format_gift(number: int, label: str) -> str:
-    return f"Id: <b>{number}.</b> {escape(label)}"
+    return f"🆔: <b>{number}.</b> {escape(label)}"
 
 
 async def _send_text_chunks(update: Update, lines: list[str]) -> None:
