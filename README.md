@@ -7,6 +7,16 @@
 <h3>How it works</h3>
 <p>To understand how the bot works, I created something like an activity diagram.</p>
 
+<h3>Features</h3>
+<ul>
+  <li>Create and view your own wishlist of gifts</li>
+  <li>View a friend's wishlist by username</li>
+  <li>Add new gifts (text + image)</li>
+  <li>Delete gifts from your wishlist</li>
+  <li>Close your wishlist with a code word (for privacy)</li>
+  <li>Works entirely through regular messages in Telegram (without mini-app)</li>
+</ul>
+
 ```mermaid
 flowchart TD
     Start(Start) --> A[Bot greeting]
@@ -59,3 +69,43 @@ flowchart TD
   <li>postgreSQL v18.6</li>
   <li>psycopg2</li>
 </ul>
+
+<h3>Environment requirements</h3>
+<table>
+  <tr>
+    <td><b>Python</b></td>
+    <td>v3.13</td>
+  </tr>
+  <tr>
+    <td><b>Database</b></td>
+    <td>PostgreSQL v18.6</td>
+  </tr>
+  <tr>
+    <td><b>Python libraries</b></td>
+    <td><code>python-telegram-bot==22.5</code>, <code>psycopg2</code></td>
+  </tr>
+  <tr>
+    <td><b>Telegram</b></td>
+    <td>Bot Token from @BotFather</td>
+  </tr>
+  <tr>
+    <td><b>Database access</b></td>
+    <td>Access to a PostgreSQL instance (database name, user, password, host, port)</td>
+  </tr>
+</table>
+
+<h3>Installation</h3>
+<ol>
+  <li>Clone the repository:
+    <pre><code>git clone https://github.com/Dunwitch666/Wish-list-telegram-bot.git</code></pre>
+  </li>
+  <li>Install Python 3.13.</li>
+  <li>Install dependencies:
+    <pre><code>pip install python-telegram-bot==22.5 psycopg2-binary</code></pre>
+  </li>
+  <li>Set up PostgreSQL and create a database for the bot.</li>
+  <li>Configure environment variables in the .env document: bot token (<code>BOT_TOKEN</code>) and database connection parameters.</li>
+  <li>Run the bot:
+    <pre><code>python main.py</code></pre>
+  </li>
+</ol>

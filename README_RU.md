@@ -7,6 +7,16 @@
 <h3>Принцип работы</h3>
 <p>Для понимания работы бота я составил подобие диаграммы деятельности</p>
 
+<h3>Возможности</h3>
+<ul>
+  <li>Создание и просмотр собственного вишлиста подарков</li>
+  <li>Просмотр вишлиста друга по username</li>
+  <li>Добавление новых подарков (текст + изображение)</li>
+  <li>Удаление подарков из своего вишлиста</li>
+  <li>Закрытие вишлиста кодовым словом (для приватности)</li>
+  <li>Работа полностью через обычные сообщения в Telegram (без mini-app)</li>
+</ul>
+
 ```mermaid
 flowchart TD
     Start(Начало) --> A[Приветствие бота]
@@ -59,3 +69,43 @@ flowchart TD
   <li>postgresSQL v18.6</li>
   <li>psycopg2</li>
 </ul>
+
+<h3>Требования к окружению</h3>
+<table>
+  <tr>
+    <td><b>Python</b></td>
+    <td>v3.13</td>
+  </tr>
+  <tr>
+    <td><b>База данных</b></td>
+    <td>PostgreSQL v18.6</td>
+  </tr>
+  <tr>
+    <td><b>Библиотеки Python</b></td>
+    <td><code>python-telegram-bot==22.5</code>, <code>psycopg2</code></td>
+  </tr>
+  <tr>
+    <td><b>Telegram</b></td>
+    <td>Токен бота от @BotFather</td>
+  </tr>
+  <tr>
+    <td><b>Доступ к базе данных</b></td>
+    <td>Доступ к экземпляру PostgreSQL (имя БД, пользователь, пароль, хост, порт)</td>
+  </tr>
+</table>
+
+<h3>Установка</h3>
+<ol>
+  <li>Клонируйте репозиторий:
+    <pre><code>git clone https://github.com/Dunwitch666/Wish-list-telegram-bot.git</code></pre>
+  </li>
+  <li>Установите Python 3.13.</li>
+  <li>Установите зависимости:
+    <pre><code>pip install python-telegram-bot==22.5 psycopg2-binary</code></pre>
+  </li>
+  <li>Разверните PostgreSQL и создайте базу данных для бота.</li>
+  <li>Настройте переменные окружения в .env файле: токен бота (<code>BOT_TOKEN</code>) и параметры подключения к БД.</li>
+  <li>Запустите бота:
+    <pre><code>python main.py</code></pre>
+  </li>
+</ol>
