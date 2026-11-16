@@ -4,9 +4,6 @@
 <p>This bot was created so that everyone can leave their gift wishes in it and share them with their friends!</p>
 <p>What distinguishes it from analogs is that the bot works entirely through messages in the messenger itself, without using a mini-app, which makes it easier to use.</p>
 
-<h3>How it works</h3>
-<p>To understand how the bot works, I created something like an activity diagram.</p>
-
 <h3>Features</h3>
 <ul>
   <li>Create and view your own wishlist of gifts</li>
@@ -16,6 +13,9 @@
   <li>Close your wishlist with a code word (for privacy)</li>
   <li>Works entirely through regular messages in Telegram (without mini-app)</li>
 </ul>
+
+<h3>How it works</h3>
+<p>To understand how the bot works, I created something like an activity diagram.</p>
 
 ```mermaid
 flowchart TD
@@ -62,14 +62,6 @@ flowchart TD
 
 <p>The flowchart above shows the main user scenarios of the bot. It was created to illustrate how the bot handles user actions: viewing wishlists, creating gifts, closing wishlists, and deleting gifts.</p>
 
-<h3>Stack</h3>
-<ul>
-  <li>python v3.13</li>
-  <li>python-telegram-bot v22.5</li>
-  <li>postgreSQL v18.6</li>
-  <li>psycopg2</li>
-</ul>
-
 <h3>Environment requirements</h3>
 <table>
   <tr>
@@ -98,6 +90,7 @@ flowchart TD
 <ol>
   <li>Clone the repository:
     <pre><code>git clone https://github.com/Dunwitch666/Wish-list-telegram-bot.git</code></pre>
+    <pre><code>cd Wish-list-telegram-bot</code></pre>
   </li>
   <li>Install Python 3.13.</li>
   <li>Install dependencies:
@@ -109,3 +102,11 @@ flowchart TD
     <pre><code>python main.py</code></pre>
   </li>
 </ol>
+
+<h3>Stack</h3>
+<ul>
+  <li>python v3.13</li>
+  <li>python-telegram-bot v22.5</li>
+  <li>postgreSQL v18.6</li>
+  <li>psycopg2</li>
+</ul>
