@@ -1,6 +1,8 @@
 #libraries import
 import os
 import psycopg2
+from telegram import Update
+from contextlib import closing
 
 #connection with database
 def get_connection():

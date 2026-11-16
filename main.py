@@ -14,7 +14,7 @@ from db import get_connection, register_user
 
 #handlers import
 from handlers.ShowMyList_handler import show_my_list
-from handlers.CreateNewGift_handler import create_gift
+from handlers.CreateNewGift_handler import create_gift_conv
 
 #load the token
 load_dotenv()
@@ -37,8 +37,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     text = update.message.text
     if text == "Мой вишлист":
         await show_my_list(update, context)
-    elif text == "Создать подарок":
-        await create_gift(update, context)
     elif text == "Удалить подарок":
         await update.message.reply_text("Удаление подарка.")
     elif text == "Закрыть вишлист":
@@ -50,7 +48,8 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
 def main():
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
-    app.add_handler(MessageHandler(filters.TEXT, handle_text))
+    app.add_handler(create_gift_conv)
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
 
     app.run_polling()
 
