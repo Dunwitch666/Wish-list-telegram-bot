@@ -224,3 +224,6 @@ __marimo__/
 *.dump
 *.db
 *.sqlite3
+
+# Images for READMEs
+/diagrams
