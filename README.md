@@ -28,10 +28,6 @@ flowchart TD
     B --> |Close wishlist| L[Enter code word]
     B --> |Delete gift| AA[Show my gifts]
 
-    AA --> AB[Enter id of the gift to delete]
-    AB --> AC[Delete gift]
-    AC --> End
-
     C --> M[Show list of gifts]
 
     K --> R[Send image]
@@ -39,6 +35,10 @@ flowchart TD
 
     L --> U[Save code word to DB]
     U --> V["Message: wishlist closed"]
+
+    AA --> AB[Enter id of the gift to delete]
+    AB --> AC[Delete gift]
+    AC --> End
 
     D --> X{User found?}
     X --> |No| Y["Message: user not found"]
@@ -58,6 +58,16 @@ flowchart TD
     V --> End
     Y --> End
     F --> End
+
+    %% Cancel buttons available at every input stage
+    C -.->|Cancel| B
+    D -.->|Cancel| B
+    K -.->|Cancel| B
+    R -.->|Cancel| B
+    L -.->|Cancel| B
+    AA -.->|Cancel| B
+    AB -.->|Cancel| B
+    J -.->|Cancel| B
 ```
 
 <p>The flowchart above shows the main user scenarios of the bot. It was created to illustrate how the bot handles user actions: viewing wishlists, creating gifts, closing wishlists, and deleting gifts.</p>
