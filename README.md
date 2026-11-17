@@ -17,58 +17,7 @@
 <h3>How it works</h3>
 <p>To understand how the bot works, I created something like an activity diagram.</p>
 
-```mermaid
-flowchart TD
-    Start(Start) --> A[Bot greeting]
-    A --> B{What to do?}
-
-    B --> |My wishlist| C[Get my gifts from DB]
-    B --> |Friend's wishlist| D[Enter friend's username]
-    B --> |Create gift| K[Enter gift text]
-    B --> |Close wishlist| L[Enter code word]
-    B --> |Delete gift| AA[Show my gifts]
-
-    C --> M[Show list of gifts]
-
-    K --> R[Send image]
-    R --> T["Message: gift added"]
-
-    L --> U[Save code word to DB]
-    U --> V["Message: wishlist closed"]
-
-    AA --> AB[Enter id of the gift to delete]
-    AB --> AC[Delete gift]
-    AC --> End
-
-    D --> X{User found?}
-    X --> |No| Y["Message: user not found"]
-    X --> |Yes| E{Is wishlist closed?}
-
-    E --> |No| F[Show list of gifts]
-    E --> |Yes| J[Enter code word]
-
-    J --> W{"Is «Cancel» pressed?"}
-    W --> |Yes| B
-    W --> |No| H{Is the word correct?}
-    H --> |Yes| F
-    H --> |No| J
-
-    M --> End(End)
-    T --> End
-    V --> End
-    Y --> End
-    F --> End
-
-    %% Cancel buttons available at every input stage
-    C -.->|Cancel| B
-    D -.->|Cancel| B
-    K -.->|Cancel| B
-    R -.->|Cancel| B
-    L -.->|Cancel| B
-    AA -.->|Cancel| B
-    AB -.->|Cancel| B
-    J -.->|Cancel| B
-```
+<img src="diagrams/diagram.png" width="800">
 
 <p>The flowchart above shows the main user scenarios of the bot. It was created to illustrate how the bot handles user actions: viewing wishlists, creating gifts, closing wishlists, and deleting gifts.</p>
 
