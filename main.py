@@ -8,6 +8,7 @@ from telegram.ext import (
     ContextTypes, filters,
 )
 from contextlib import closing
+import logging
 
 #db import
 from db import get_connection, register_user
@@ -21,6 +22,13 @@ from handlers.CloseMyList_handler import close_my_list_conv
 #load the token
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
+
+#logging config
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 #handle the /start command and send a welcome message with a keyboard
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -46,7 +54,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
 def main():
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
-    
+
     #handlers
     app.add_handler(create_gift_conv)
     app.add_handler(delete_gift_conv)
@@ -55,6 +63,9 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
 
     app.run_polling()
+
+    logging.error
+    logging.info
 
 if __name__ == "__main__":
     main()
