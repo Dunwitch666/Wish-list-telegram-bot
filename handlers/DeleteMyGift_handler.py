@@ -27,15 +27,21 @@ async def id_choose(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text("Введите id подарка для удаления:", reply_markup=InlineKeyboardMarkup(keyboard))
     return ID
 
+#handle invalid id input
+async def wrong_digit(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    keyboard = [
+        [InlineKeyboardButton("Отмена", callback_data="cancel")],
+    ]
+    await update.message.reply_text("Пожалуйста, введите числовой id подарка.", reply_markup=InlineKeyboardMarkup(keyboard))
+    return ID
+    
+
 #delete the gift
 async def delete_gift(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    keyboard = [
-                [InlineKeyboardButton("Отмена", callback_data="cancel")],
-    ]
     gift_id_text = update.message.text.strip()
+
     if not gift_id_text.isdigit():
-        await update.message.reply_text("Пожалуйста, введите числовой id подарка.",  reply_markup=InlineKeyboardMarkup(keyboard))
-        return ID
+        return await wrong_digit(update, context)
 
     gift_id = int(gift_id_text)
     user_id = update.effective_user.id
@@ -60,7 +66,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     query = update.callback_query
     await query.answer()
 
-    context.user_data.pop("label", None)
     await query.edit_message_text(text="Удаление подарка отменено.")
     return ConversationHandler.END
 
@@ -68,7 +73,9 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 delete_gift_conv = ConversationHandler(
     entry_points=[MessageHandler(filters.Regex("^Удалить подарок$"), id_choose)],
     states={
-        ID: [MessageHandler(filters.TEXT & ~filters.COMMAND, delete_gift)],
+        ID: [
+            MessageHandler(filters.TEXT & ~filters.COMMAND, delete_gift),
+        ]
     },
     fallbacks=[CallbackQueryHandler(button_handler, pattern="^cancel$")],
 )
