@@ -16,8 +16,8 @@
 
 <h3>Видеодемонстрация</h3>
 <p>Посмотрите работу бота и интерфейс в действии:</p>
-<video src="for_readme/video1.mp4" controls width="800"></video>
-<video src="for_readme/video2.mp4" controls width="800"></video>
+<img src="for_readme/video1.gif" width="800">
+<img src="for_readme/video2.gif" width="800">
 
 <h3>Принцип работы</h3>
 <p>Для понимания работы бота я составил подобие диаграммы деятельности</p>
