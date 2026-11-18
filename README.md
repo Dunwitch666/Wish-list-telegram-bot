@@ -16,8 +16,8 @@
 
 <h3>Video Demo</h3>
 <p>Watch the bot interface and in action:</p>
-<img src="for_readme/video1.gif" width="800">
-<img src="for_readme/video2.gif" width="800">
+<img src="for_readme/video1.gif" width="600">
+<img src="for_readme/video2.gif" width="600">
 
 <h3>How it works</h3>
 <p>To understand how the bot works, I created something like an activity diagram.</p>
