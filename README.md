@@ -14,10 +14,15 @@
   <li>Works entirely through regular messages in Telegram (without mini-app)</li>
 </ul>
 
+<h3>Video Demo</h3>
+<p>Watch the bot interface and in action:</p>
+<video src="for_readme/video1.mp4" controls width="800"></video>
+<video src="for_readme/video2.mp4" controls width="800"></video>
+
 <h3>How it works</h3>
 <p>To understand how the bot works, I created something like an activity diagram.</p>
 
-<img src="diagrams/diagram.png" width="800">
+<img src="for_readme/diagram.png" width="800">
 
 <p>The flowchart above shows the main user scenarios of the bot. It was created to illustrate how the bot handles user actions: viewing wishlists, creating gifts, closing wishlists, and deleting gifts.</p>
 
