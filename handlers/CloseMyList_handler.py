@@ -8,6 +8,7 @@ from telegram.ext import (
     filters,
     CallbackQueryHandler,
 )
+import hashlib
 
 #import db
 from db import get_connection
@@ -26,9 +27,16 @@ async def close_wishlist_start(update: Update, context: ContextTypes.DEFAULT_TYP
     )
     return CODE
 
+#hash the code for security
+def hash_data(data: str) -> str:
+    combined = f'{data}'.encode('utf-8')
+    return hashlib.sha256(combined).hexdigest()
+
+
 #save wishlist code to database
 async def set_wishlist_code(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     code = update.message.text.strip()
+    hash_code = hash_data(code)
 
     if not code:
         keyboard = [
@@ -46,7 +54,7 @@ async def set_wishlist_code(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         with conn, conn.cursor() as cur:
             cur.execute(
                 "UPDATE users SET wishlist_code = %s WHERE user_id = %s;",
-                (code, user_id),
+                (hash_code, user_id),
             )
 
     await update.message.reply_text("Вишлист закрыт кодовым словом 🔒")
