@@ -58,7 +58,7 @@
   </li>
   <li>Install Python 3.13.</li>
   <li>Install dependencies:
-    <pre><code>pip install python-telegram-bot==22.5 psycopg2-binary</code></pre>
+    <pre><code>pip install python-telegram-bo psycopg2-binary python-dotenv</code></pre>
   </li>
   <li>Set up PostgreSQL and create a database for the bot.</li>
   <li>Configure environment variables in the .env document: bot token (<code>BOT_TOKEN</code>) and database connection parameters.</li>
