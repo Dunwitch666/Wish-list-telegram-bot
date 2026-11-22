@@ -24,7 +24,13 @@
 
 <img src="for_readme/diagram_ru.png" width="800">
 
-<p>Диаграмма выше показывает основные сценарии работы бота. Она создана для иллюстрации того, как бот обрабатывает действия пользователя: просмотр вишлистов, создание подарков, закрытие вишлистов и удаление подарков.</p>
+<p>Диаграмма выше показывает основные сценарии работы бота. Она создана для иллюстрации того, как бот обрабатывает действия пользователя: просмотр вишлистов (<code>ShowFriendList_handler.py</code> для просмотра вишлиста друзей и <code>ShowMyList_handler.py</code> для просмотра своего вишлиста), создание подарков (<code>CreateNewGift_handler.py</code>), закрытие вишлистов кодовым словом (<code>CloseMyList_handler.py</code>) и удаление подарков (<code>DeleteMyGift_handler.py</code>).</p>
+
+<p>Так же стоит уделить внимаение файлам <code>db.py</code> и <code>wishlist_view.py</code></p>
+
+<p><code>wishlist_view.py</code> - содержит инструкцию для вызова самого вишлиста и сборки его в сообщения. Применяеется в <code>ShowFriendList_handler.py</code>, <code>ShowMyList_handler.py</code> а так же в <code>DeleteMyGift_handler.py</code></p>
+
+<p><code>db.py</code> - указания подключения к бд и функцию регистрации пользователей в таблицу <code>users</code></p>
 
 <h3>Требования к окружению</h3>
 <table>

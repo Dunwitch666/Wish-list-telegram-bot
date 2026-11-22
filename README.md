@@ -24,7 +24,13 @@
 
 <img src="for_readme/diagram.png" width="800">
 
-<p>The flowchart above shows the main user scenarios of the bot. It was created to illustrate how the bot handles user actions: viewing wishlists, creating gifts, closing wishlists, and deleting gifts.</p>
+<p>The diagram above illustrates the bot's primary operational scenarios. It shows how the bot handles user actions, such as viewing wishlists (using <code>ShowFriendList_handler.py</code> for friends' wishlists and <code>ShowMyList_handler.py</code> for one's own), creating gifts (<code>CreateNewGift_handler.py</code>), securing wishlists with a code word (<code>CloseMyList_handler.py</code>), and deleting gifts (<code>DeleteMyGift_handler.py</code>).</p>
+
+<p>It is also worth noting the files <code>db.py</code> and <code>wishlist_view.py</code>.</p>
+
+<p><code>wishlist_view.py</code> contains the logic for retrieving a wishlist and formatting it into messages. It is used by <code>ShowFriendList_handler.py</code>, <code>ShowMyList_handler.py</code>, and <code>DeleteMyGift_handler.py</code>.</p>
+
+<p><code>db.py</code> contains the database connection settings and a function for registering users in the <code>users</code> table.</p>
 
 <h3>Environment requirements</h3>
 <table>
