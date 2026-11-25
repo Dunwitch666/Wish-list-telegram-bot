@@ -56,6 +56,26 @@
   </tr>
 </table>
 
+<h3>Database Setup</h3>
+<p>The following SQL script creates the tables required by the bot:</p>
+<pre><code class="language-sql">CREATE TABLE users
+(
+    user_id BIGINT PRIMARY KEY,
+    username VARCHAR(32) UNIQUE, 
+    wishlist_code VARCHAR(64)
+);
+
+CREATE TABLE gifts
+(
+    id SERIAL PRIMARY KEY,
+    user_id  BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    label TEXT NOT NULL,
+    image_file_id VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_gifts_user_id ON gifts(user_id);</code></pre>
+
 <h3>Installation</h3>
 <ol>
   <li>Clone the repository:
